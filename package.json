@@ -1,0 +1,55 @@
+{
+  "name": "@pown/engine",
+  "version": "2.0.0",
+  "description": "Pownage guaranteed",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "node ./scripts/generate-database.js",
+    "test": "mocha",
+    "usage": "POWN_ROOT=. pown-cli",
+    "engine": "POWN_ROOT=. pown-cli engine"
+  },
+  "repository": {
+    "type": "engine",
+    "url": "git+https://github.com/pownjs/pown-engine.git"
+  },
+  "keywords": [
+    "exploit",
+    "framework"
+  ],
+  "author": "pdp <pdp@gnucitizen.org>",
+  "contributors": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pownjs/pown-engine/issues"
+  },
+  "homepage": "https://github.com/pownjs/pown-engine#readme",
+  "peerDependencies": {
+    "js-yaml": "^4.0.0",
+    "@pown/cli": "^2.29.0"
+  },
+  "devDependencies": {
+    "@pown/cli": "^2.29.0",
+    "@pown/toolchain": "^2.1.0",
+    "safe-regex": "^2.1.1"
+  },
+  "dependencies": {
+    "@pown/regexp": "^2.1.0",
+    "deepmerge": "^4.2.2",
+    "esprima": "^4.0.1",
+    "jsonpath": "^1.1.0",
+    "js-yaml": "^4.0.0",
+    "static-eval": "^2.1.0"
+  },
+  "pown": {},
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "extends": "./.babelrc"
+        }
+      ]
+    ]
+  }
+}
