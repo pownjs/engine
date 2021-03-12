@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node ./scripts/generate-database.js",
     "test": "mocha",
-    "usage": "POWN_ROOT=. pown-cli",
+    "usage": "POWN_ROOT=. pown-cli --help",
     "engine": "POWN_ROOT=. pown-cli engine"
   },
   "repository": {
