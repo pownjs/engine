@@ -6,7 +6,7 @@
 
 # Pown Engine
 
-Pown Engine is a generic scripting and execution environment.
+Pown Engine is a generic scripting and execution environment. It is used by other pown tools to provide a simle extension mechanism for task-based plugins. For example, [recon](https://github.com/pownjs/recon) is using this library to for its own template-based scripting language.
 
 ## Credits
 
