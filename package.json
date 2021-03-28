@@ -29,16 +29,16 @@
     "@pown/cli": "^2.29.0"
   },
   "devDependencies": {
-    "@pown/cli": "^2.29.0",
+    "js-yaml": "^4.0.0",
+    "@pown/cli": "^2.30.0",
     "@pown/toolchain": "^2.1.0",
     "safe-regex": "^2.1.1"
   },
   "dependencies": {
-    "@pown/regexp": "^2.1.0",
+    "@pown/regexp": "^2.2.2",
     "deepmerge": "^4.2.2",
     "esprima": "^4.0.1",
     "jsonpath": "^1.1.0",
-    "js-yaml": "^4.0.0",
     "static-eval": "^2.1.0"
   },
   "pown": {},
