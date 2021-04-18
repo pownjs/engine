@@ -1,0 +1,8 @@
+id: request
+
+request:
+  uri: https://${hostname}/status/500
+  matches:
+    - script: responseCode === 500
+    - word: INTERNAL
+      part: responseMessage
