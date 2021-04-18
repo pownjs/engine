@@ -76,6 +76,7 @@ pown-cli [options] <command> [command options]
 Commands:
   pown-cli modules <command>      Module manager  [aliases: module, mo, m]
   pown-cli preferences <command>  Preferences  [aliases: prefs]
+  pown-cli request [url]          Send requests
 
 Options:
   --version  Show version number  [boolean]
