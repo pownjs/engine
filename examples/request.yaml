@@ -6,3 +6,6 @@ request:
     - script: responseCode === 500
     - word: INTERNAL
       part: responseMessage
+  extracts:
+    - jsonpath: $.responseCode
+      name: responseCode
