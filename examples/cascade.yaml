@@ -12,4 +12,3 @@ task:
   - extract:
       value: ip2
       name: ip3
-  
