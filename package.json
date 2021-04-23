@@ -1,6 +1,6 @@
 {
   "name": "@pown/engine",
-  "version": "2.5.6",
+  "version": "2.5.7",
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
