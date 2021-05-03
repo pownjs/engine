@@ -4,6 +4,15 @@ const { Template } = require('../lib/template')
 
 describe('template', () => {
     describe('Template', () => {
+        it('#interpolate', () => {
+            const t = new Template()
+
+            assert(t.interpolate('test') === 'test')
+            assert(t.interpolate('test${value}', { value: 123 }) === 'test123')
+            assert(t.interpolate(['test${value}'], { value: 123 })[0] === 'test123')
+            assert(t.interpolate({ value: 'test${value}' }, { value: 123 }).value === 'test123')
+        })
+
         it('#test', async() => {
             const t = new Template()
 
