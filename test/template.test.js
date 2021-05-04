@@ -7,6 +7,7 @@ describe('template', () => {
         it('#interpolate', () => {
             const t = new Template()
 
+            assert(t.interpolate(1) === 1)
             assert(t.interpolate('test') === 'test')
             assert(t.interpolate('test${value}', { value: 123 }) === 'test123')
             assert(t.interpolate(['test${value}'], { value: 123 })[0] === 'test123')
