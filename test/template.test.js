@@ -17,6 +17,11 @@ describe('template', () => {
         it('#test', async() => {
             const t = new Template()
 
+            assert(await t.test({ lt: 1 }, 2))
+            assert(await t.test({ gt: 2 }, 1))
+            assert(await t.test({ lte: 1 }, 1))
+            assert(await t.test({ gte: 1 }, 1))
+
             assert(await t.test({ b64: Buffer.from('test').toString('base64') }, 'test'))
             assert(!await t.test({ b64: Buffer.from('test').toString('base64') }, 'tset'))
         })
