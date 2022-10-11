@@ -4,17 +4,16 @@
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
-    "build": "node ./scripts/generate-database.js",
-    "test": "mocha",
-    "usage": "POWN_ROOT=. pown-cli --help",
-    "engine": "POWN_ROOT=. pown-cli engine"
+    "test": "npx mocha@latest",
+    "usage": "POWN_ROOT=. npx @pown/cli@latest --help",
+    "engine": "POWN_ROOT=. npx @pown/cli@latest engine"
   },
   "repository": {
     "type": "engine",
     "url": "git+https://github.com/pownjs/pown-engine.git"
   },
   "keywords": [
-    "exploit",
+    "security",
     "framework"
   ],
   "author": "pdp <pdp@gnucitizen.org>",
@@ -24,16 +23,9 @@
     "url": "https://github.com/pownjs/pown-engine/issues"
   },
   "homepage": "https://github.com/pownjs/pown-engine#readme",
-  "peerDependencies": {
-    "js-yaml": "^4.0.0",
-    "@pown/cli": "^2.29.0"
-  },
   "devDependencies": {
-    "@pown/cli": "^2.40.1",
     "@pown/request": "^2.28.0",
-    "@pown/toolchain": "^2.6.0",
-    "js-yaml": "^4.1.0",
-    "safe-regex": "^2.1.1"
+    "js-yaml": "^4.1.0"
   },
   "dependencies": {
     "@pown/regexp": "^2.2.3",
@@ -42,15 +34,5 @@
     "jsonpath": "^1.1.1",
     "static-eval": "^2.1.0"
   },
-  "pown": {},
-  "browserify": {
-    "transform": [
-      [
-        "babelify",
-        {
-          "extends": "./.babelrc"
-        }
-      ]
-    ]
-  }
+  "pown": {}
 }
