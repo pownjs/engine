@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const util = require('util')
 const jsYaml = require('js-yaml')
 const { Template } = require('../lib/template')
 
@@ -20,7 +21,7 @@ const main = async() => {
     const document = jsYaml.load(fs.readFileSync(path.join(__dirname, 'workflow.yaml')).toString())
     const template = new WorkflowTemplate(document)
 
-    console.log(await template.run())
+    console.log(util.inspect(await template.run(), { depth: Infinity, colors: true }))
 }
 
 main().catch(console.error)
