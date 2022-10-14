@@ -451,39 +451,38 @@ declare module "examples/workflow" {
     export {};
 }
 declare module "lib/helper" {
-    export function createSuperTemplate(definition: any): {
-        new (template: any, options: any): {
-            map: {};
-            executeTask(taskName: any, task: any, input?: {}, ...args: any[]): Promise<any>;
-            runTask(taskName: any, task: any, input?: {}, ...args: any[]): Promise<import("lib/template").TaskResult>;
-            runTaskSetIt(taskName: any, tasks: any, input?: {}, ...args: any[]): AsyncGenerator<import("lib/template").TaskResult, void, any>;
-            template: Record<string, any>;
-            tracer: import("lib/trace").Tracer;
-            isBoolean(input: any): boolean;
-            isNumber(input: any): boolean;
-            isString(input: any): boolean;
-            isBuffer(input: any): boolean;
-            isArray(input: any): boolean;
-            query(object: Record<string, any>, path: string): any;
-            assign(object: Record<string, any>, path: string, value: any): any;
-            getEvaluationScope(scope: Record<string, any>): Record<string, any>;
-            evaluate(script: string, scope: Record<string, any>): any;
-            interpolate(input: any, scope: any): any;
-            toArray(items: AsyncIterable<any>): Promise<any[]>;
-            getTaskDefinition(task: any): Promise<any>;
-            getTestConditionFunc(condition: import("lib/template").MatcherCondition): (it: Iterable<any>, handler: import("lib/async").Handler) => Promise<boolean>;
-            test(matcher: import("lib/template").Matcher, input: any): Promise<boolean>;
-            match(matcher: import("lib/template").Matcher, input: any): Promise<boolean>;
-            matchWithTask(task: import("lib/template").MatcherTask, input: any): Promise<boolean>;
-            extract(extractor: import("lib/template").Extractor, input: import("lib/template").Input): Promise<Record<string, any>>;
-            extractWithTask(task: import("lib/template").ExtractorTask, input: import("lib/template").Input): Promise<Record<string, any>>;
-            runTaskSet(taskName: any, tasks: any, input: any, ...args: any[]): Promise<any[]>;
-            runTaskDefinitionsIt(taskDefinitions: import("lib/template").Task, input: import("lib/template").Input, ...args: any[]): AsyncGenerator<import("lib/template").TaskResult, any, any>;
-            runTaskDefinitions(taskDefinitions: import("lib/template").Task, input: import("lib/template").Input, ...args: any[]): Promise<import("lib/template").TaskResult[]>;
-            runIt(input?: import("lib/template").Input, ...args: any[]): AsyncGenerator<import("lib/template").TaskResult, any, any>;
-            run(input?: import("lib/template").Input, ...args: any[]): Promise<import("lib/template").Execution>;
+    export type TaskResult = import("lib/template").TaskResult;
+    export type Task = import("lib/template").Task;
+    export type Input = import("lib/template").Input;
+    export type TaskDefinition = {
+        [taskName: string]: {
+            alias?: string | string[];
+            aliases?: string | string[];
+            run?: (task: Task, input: Input, ...args: any) => void | TaskResult | Promise<void> | Promise<TaskResult>;
+            handler?: (task: Task, input: Input, ...args: any) => void | TaskResult | Promise<void> | Promise<TaskResult>;
         };
     };
+    /**
+     * @typedef {import('./template.js').TaskResult} TaskResult
+     * @typedef {import('./template.js').Task} Task
+     * @typedef {import('./template.js').Input} Input
+     *
+     * @typedef {{
+     *  [taskName: string]: {
+     *    alias?: string|string[]
+     *    aliases?: string|string[]
+     *    run?: (task: Task, input: Input, ...args: any) => void|TaskResult|Promise<void>|Promise<TaskResult>
+     *    handler?: (task: Task, input: Input, ...args: any) => void|TaskResult|Promise<void>|Promise<TaskResult>
+     *  }
+     * }} TaskDefinition
+     */
+    /**
+     *
+     * @param {TaskDefinition} definition
+     * @returns {typeof Template}
+     */
+    export function createSuperTemplate(definition: TaskDefinition): typeof Template;
+    import { Template } from "lib/template";
 }
 declare module "test/template.test" {
     export {};
