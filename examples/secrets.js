@@ -1,15 +1,17 @@
 const fs = require('fs')
 const path = require('path')
-const util = require('util')
 const jsYaml = require('js-yaml')
-const { Template } = require('../lib/template')
+
+const { Template } = require('../lib/template.js')
+const { ConsoleTracer } = require('../lib/trace.js')
 
 const main = async() => {
     const document = jsYaml.load(fs.readFileSync(path.join(__dirname, 'secrets.yaml')).toString())
-    const template = new Template(document)
+    const template = new Template(document, { tracer: new ConsoleTracer() })
 
-    console.log(util.inspect(await template.run(''), { depth: Infinity, colors: true }))
-    console.log(util.inspect(await template.run('AKIAJE56YT5SVRUGH5OA'), { depth: Infinity, colors: true }))
+    await template.run({data: ''})
+    console.log('---')
+    await template.run({data: 'AKIAJE56YT5SVRUGH5OA'})
 }
 
 main().catch(console.error)

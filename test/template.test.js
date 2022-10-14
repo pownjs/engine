@@ -4,8 +4,19 @@ const { Template } = require('../lib/template')
 
 describe('template', () => {
     describe('Template', () => {
+        it('#evaluate', () => {
+            const t = new Template({})
+
+            assert(t.evaluate('true', {}))
+            assert(!t.evaluate('false', {}))
+
+            assert(t.evaluate('"abc"', {}) === 'abc')
+
+            assert(t.evaluate('ret({ abc: "xyz" })', {})?.abc === 'xyz')
+        })
+
         it('#interpolate', () => {
-            const t = new Template()
+            const t = new Template({})
 
             assert(t.interpolate(1) === 1)
             assert(t.interpolate('test') === 'test')
@@ -15,7 +26,7 @@ describe('template', () => {
         })
 
         it('#test', async() => {
-            const t = new Template()
+            const t = new Template({})
 
             assert(await t.test({ lt: 1 }, 2))
             assert(await t.test({ gt: 2 }, 1))
@@ -24,6 +35,21 @@ describe('template', () => {
 
             assert(await t.test({ b64: Buffer.from('test').toString('base64') }, 'test'))
             assert(!await t.test({ b64: Buffer.from('test').toString('base64') }, 'tset'))
+
+            assert(await t.test('a > b', { a: 10, b: 5 }))
+            assert(!await t.test('a < b', { a: 10, b: 5 }))
+        })
+
+        it('correctly extracts using expression language', async() => {
+            const t = new Template({
+                test: {
+                    extracts: `ret({ a: 'abc' })`
+                }
+            })
+
+            const r = await t.run()
+
+            assert(r.tasks[0]?.output.a === 'abc')
         })
     })
 })

@@ -4,7 +4,8 @@
   "description": "Pownage guaranteed",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npx mocha@latest",
+    "check": "npx -p typescript tsc",
+    "test": "npx mocha",
     "usage": "POWN_ROOT=. npx @pown/cli@latest --help",
     "engine": "POWN_ROOT=. npx @pown/cli@latest engine"
   },
@@ -25,6 +26,8 @@
   "homepage": "https://github.com/pownjs/pown-engine#readme",
   "devDependencies": {
     "@pown/request": "^2.28.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.8.5",
     "js-yaml": "^4.1.0"
   },
   "dependencies": {

@@ -1,14 +1,15 @@
 const fs = require('fs')
 const path = require('path')
-const util = require('util')
 const jsYaml = require('js-yaml')
-const { Template } = require('../lib/template')
+
+const { Template } = require('../lib/template.js')
+const { ConsoleTracer } = require('../lib/trace.js')
 
 const main = async() => {
     const document = jsYaml.load(fs.readFileSync(path.join(__dirname, 'cascade.yaml')).toString())
-    const template = new Template(document)
+    const template = new Template(document, { tracer: new ConsoleTracer() })
 
-    console.log(util.inspect(await template.run({ ip0: 'test' }), { depth: Infinity, colors: true }))
+    await template.run({ ip0: 'test' })
 }
 
 main().catch(console.error)

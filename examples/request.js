@@ -1,9 +1,10 @@
 const fs = require('fs')
 const path = require('path')
-const util = require('util')
 const jsYaml = require('js-yaml')
 const { request } = require('@pown/request')
-const { Template } = require('../lib/template')
+
+const { Template } = require('../lib/template.js')
+const { ConsoleTracer } = require('../lib/trace.js')
 
 class RequestTemplate extends Template {
     async executeTask(taskName, task, input = {}) {
@@ -19,9 +20,9 @@ class RequestTemplate extends Template {
 
 const main = async() => {
     const document = jsYaml.load(fs.readFileSync(path.join(__dirname, 'request.yaml')).toString())
-    const template = new RequestTemplate(document)
+    const template = new RequestTemplate(document, { tracer: new ConsoleTracer() })
 
-    console.log(util.inspect(await template.run({ hostname: 'httpbin.org' }), { depth: Infinity, colors: true }))
+    await template.run({ hostname: 'httpbin.org' })
 }
 
 main().catch(console.error)
