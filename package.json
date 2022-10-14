@@ -24,6 +24,7 @@
     "url": "https://github.com/pownjs/pown-engine/issues"
   },
   "homepage": "https://github.com/pownjs/pown-engine#readme",
+  "types": "types/index.d.ts",
   "devDependencies": {
     "@pown/request": "^2.28.0",
     "@types/mocha": "^10.0.0",

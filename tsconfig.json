@@ -7,15 +7,15 @@
       "skipLibCheck": false,
       "strict": false,
       "forceConsistentCasingInFileNames": true,
-      "noEmit": true,
+      "declaration": true,
+      "emitDeclarationOnly": true,
       "incremental": true,
       "esModuleInterop": true,
       "module": "esnext",
       "resolveJsonModule": true,
-      "isolatedModules": true,
-      "jsx": "preserve",
-      "moduleResolution": "node"
+      "moduleResolution": "node",
+      "outFile": "types/index.d.ts"
     },
     "include": ["**/*.js", "**/*.ts"],
-    "exclude": ["node_modules"]
+    "exclude": ["types/index.d.ts", "node_modules"]
 }
