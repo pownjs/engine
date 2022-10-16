@@ -13,6 +13,8 @@ describe('template', () => {
             assert(t.evaluate('"abc"', {}) === 'abc')
 
             assert(t.evaluate('ret({ abc: "xyz" })', {})?.abc === 'xyz')
+
+            assert(!t.evaluate('a?.b?.c === "d"', {}))
         })
 
         it('#interpolate', () => {
